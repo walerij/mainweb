@@ -235,7 +235,7 @@ class Controller extends \yii\base\Controller
      * If this is null and the return URL was not set previously, [[Application::homeUrl]] will be redirected to.
      * Please refer to [[User::setReturnUrl()]] on accepted format of the URL.
      * @return Response the current response object
-     * @see User::getReturnUrl()
+     * @see UserIdentity::getReturnUrl()
      */
     public function goBack($defaultUrl = null)
     {
