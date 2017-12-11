@@ -44,6 +44,10 @@ AppAsset::register($this);
         ['label' => 'Выплаты', 'url' => ['/site/about'],
             'visible' => !Yii::$app->user->isGuest] ,
 
+        ['label' => 'Регистрация', 'url' => ['/site/join'],
+            'visible' => Yii::$app->user->isGuest
+            
+            ],
 
         Yii::$app->user->isGuest ? (
         ['label' => 'Вход', 'url' => ['/site/login']]
