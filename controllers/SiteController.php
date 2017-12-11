@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\UserJoinForm;
 
 class SiteController extends Controller
 {
@@ -123,4 +124,26 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    
+    public function actionJoin()
+    {
+        if(Yii::$app->request->isPost)
+
+            return $this->actionJoinPost();
+
+        $userJoinForm= new UserJoinForm();
+        /*$userRecord = new UserRecord();
+        $userRecord ->setTestUser();
+        $userJoinForm->setUserRecord($userRecord)
+
+            ;*/
+        return $this->render('user\join',
+        compact('userJoinForm')
+            );
+    }
+
+    public function actionJoinPost() {
+        
+    }
+
 }

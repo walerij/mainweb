@@ -1,9 +1,10 @@
 <?php
 namespace app\models;
-
-class UserJoinForm extends Model{
+use yii\base\Model;
+class UserJoinForm extends Model
+{
     public $username;
-    public $passowrd;
+    public $password;
     public $confirmpassword;
     
     public function rules()
@@ -12,7 +13,7 @@ class UserJoinForm extends Model{
         [
             [['username','password','confirmpassword'],'required','message'=>'поле должно быть заполнено'],
             ['username','email','message'=>'поле не формата email'],
-            ['confirmpassowrd','compare','compareAttribute'=>'password','message'=>'пароли не равны']
+            ['confirmpassword','compare','compareAttribute'=>'password','message'=>'пароли не равны']
         ];
     }
     
