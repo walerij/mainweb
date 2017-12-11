@@ -29,8 +29,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
-            ['username','email', 'message'=>'не соответствует формату email']
+            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255]
         ];
     }
 
