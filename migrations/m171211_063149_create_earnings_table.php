@@ -23,7 +23,7 @@ class m171211_063149_create_earnings_table extends Migration
             'total_hash' => $this->integer(),
             'delta_hash' => $this->integer(),
             'spend_hash' => $this->integer(),
-            'mining_date' => $this->integer(),
+            'mining_date' => $this->DateTime(),
   
         ]);
     }
