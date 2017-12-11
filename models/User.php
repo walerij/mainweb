@@ -63,9 +63,17 @@ class User extends \yii\db\ActiveRecord
     }
     
     
-     public static function findUserByEmail($email)
+    public static function findUserByEmail($email)
     {
         return  static::findOne(['username'=>$email]);
+    }
+    public function setUserJoinForm($userJoinForm)
+    {
+      
+        $this->username=$userJoinForm->username;
+        $this->password=md5($userJoinForm->password);
+        
+
     }
     
 }

@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\UserJoinForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -143,7 +144,21 @@ class SiteController extends Controller
     }
 
     public function actionJoinPost() {
-        
+         $userJoinForm= new UserJoinForm();
+        if($userJoinForm->load(Yii::$app->request->post()))
+          if($userJoinForm->validate())
+          {
+              $userRecord=new User();
+              $userRecord->setUserJoinForm($userJoinForm);
+              $userRecord->save();
+              //return $this->redirect('/user/thanks');
+              return $this->render('user\thanks',
+            compact('userJoinForm'));
+          }
+
+            return $this->render('user\join',
+            compact('userJoinForm')
+        );
     }
 
 }
