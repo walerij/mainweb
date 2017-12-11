@@ -14,6 +14,7 @@ class m171211_194224_create_cache_table extends Migration
     {
         $this->createTable('cache', [
             'id' => $this->primaryKey(),
+
             'cache_paysystem'=>$this->string(), //тип кощелька - платежная система
             'cache_number' =>$this->string()
         ]);

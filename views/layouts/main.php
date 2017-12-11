@@ -37,7 +37,7 @@ AppAsset::register($this);
 
     $items=[
 
-        ['label' => 'Счет', 'url' => ['/site/index'],
+        ['label' => 'Счет', 'url' => ['/site/userearning'],
             'visible' => !Yii::$app->user->isGuest
             
             ],

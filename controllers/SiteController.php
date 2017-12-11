@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\UserJoinForm;
 use app\models\User;
 use app\models\EarningsRecord;
+use app\models\CacheRecord;
 
 class SiteController extends Controller {
 
@@ -142,13 +143,29 @@ class SiteController extends Controller {
                 $userRecord->setUserJoinForm($userJoinForm);
                 $userRecord->save();
                 //return $this->redirect('/user/thanks');
+                /*добавляем счет биткойнтовый*/
                 $earningsRecords = new EarningsRecord();
                 $earningsRecords->addEarning($userRecord);
                 $earningsRecords->save();
+                /*добавляем кошелек*/
+                $cacheRecord= new CacheRecord();
+                $cacheRecord->addCache($userJoinForm,$userRecord->id );
+                $cacheRecord->save();
                 return $this->render('user\thanks', compact('userJoinForm'));
             }
 
         return $this->render('user\join', compact('userJoinForm')
+        );
+    }
+
+    public function actionUserearning()
+    {
+        $session = Yii::$app->session;
+
+        $userEarning =  User::find()->where(['id'=>$session['__id']])->all();
+        return $this->render('user\user_earning',
+          ['userEarning'=>$userEarning]
+
         );
     }
 

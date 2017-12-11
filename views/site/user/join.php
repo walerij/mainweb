@@ -18,6 +18,9 @@ use yii\helpers\Html;
         <?= $form->field($userJoinForm, 'username')->label('Эл почта'); ?>
         <?= $form->field($userJoinForm, 'password')->passwordInput()->label('Пароль'); ?>
         <?= $form->field($userJoinForm, 'confirmpassword')->passwordInput()->label('Подтверждение пароля'); ?>
+
+        <?= $form->field($userJoinForm, 'cache_paysystem')->label('Платежная система'); ?>
+        <?= $form->field($userJoinForm, 'cache_number')->label('Номер счета'); ?>
         <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-success']) ?>
 
 

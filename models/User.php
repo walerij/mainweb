@@ -56,6 +56,10 @@ class User extends \yii\db\ActiveRecord
         return $this->hasOne(EarningsRecord::className(),['user_id'=>'id']);
     }
 
+    public function getCache()
+    {
+        return $this->hasOne(CacheRecord::className(),['user_id'=>'id']);
+    }
     
     public function getPayment()
     {
