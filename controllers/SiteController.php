@@ -11,14 +11,14 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\UserJoinForm;
 use app\models\User;
+use app\models\EarningsRecord;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -43,8 +43,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -61,8 +60,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index');
     }
 
@@ -71,8 +69,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
+    public function actionLogin() {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -82,7 +79,7 @@ class SiteController extends Controller
             return $this->goBack();
         }
         return $this->render('login', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -91,8 +88,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -103,8 +99,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -112,7 +107,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -121,43 +116,39 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
-    
-    public function actionJoin()
-    {
-        if(Yii::$app->request->isPost)
 
+    public function actionJoin() {
+        if (Yii::$app->request->isPost)
             return $this->actionJoinPost();
 
-        $userJoinForm= new UserJoinForm();
-        /*$userRecord = new UserRecord();
-        $userRecord ->setTestUser();
-        $userJoinForm->setUserRecord($userRecord)
+        $userJoinForm = new UserJoinForm();
+        /* $userRecord = new UserRecord();
+          $userRecord ->setTestUser();
+          $userJoinForm->setUserRecord($userRecord)
 
-            ;*/
-        return $this->render('user\join',
-        compact('userJoinForm')
-            );
+          ; */
+        return $this->render('user\join', compact('userJoinForm')
+        );
     }
 
     public function actionJoinPost() {
-         $userJoinForm= new UserJoinForm();
-        if($userJoinForm->load(Yii::$app->request->post()))
-          if($userJoinForm->validate())
-          {
-              $userRecord=new User();
-              $userRecord->setUserJoinForm($userJoinForm);
-              $userRecord->save();
-              //return $this->redirect('/user/thanks');
-              return $this->render('user\thanks',
-            compact('userJoinForm'));
-          }
+        $userJoinForm = new UserJoinForm();
+        if ($userJoinForm->load(Yii::$app->request->post()))
+            if ($userJoinForm->validate()) {
+                $userRecord = new User();
+                $userRecord->setUserJoinForm($userJoinForm);
+                $userRecord->save();
+                //return $this->redirect('/user/thanks');
+                $earningsRecords = new EarningsRecord();
+                $earningsRecords->addEarning($userRecord);
+                $earningsRecords->save();
+                return $this->render('user\thanks', compact('userJoinForm'));
+            }
 
-            return $this->render('user\join',
-            compact('userJoinForm')
+        return $this->render('user\join', compact('userJoinForm')
         );
     }
 

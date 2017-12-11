@@ -33,7 +33,8 @@ class EarningsRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'coinhive_hash', 'support_hash', 'refferal_hash', 'total_hash', 'delta_hash', 'spend_hash', 'mining_date'], 'integer'],
+            [['user_id', 'coinhive_hash', 'support_hash', 'refferal_hash', 'total_hash', 'delta_hash', 'spend_hash'], 'integer'],
+            [['user_id', 'coinhive_hash', 'support_hash', 'refferal_hash', 'total_hash', 'delta_hash', 'spend_hash','mining_date'], 'required'],
         ];
     }
 
