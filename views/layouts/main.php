@@ -37,8 +37,12 @@ AppAsset::register($this);
 
     $items=[
 
-        ['label' => 'Счет', 'url' => ['/site/index']],
-        ['label' => 'Выплаты', 'url' => ['/site/about']] ,
+        ['label' => 'Счет', 'url' => ['/site/index'],
+            'visible' => !Yii::$app->user->isGuest
+            
+            ],
+        ['label' => 'Выплаты', 'url' => ['/site/about'],
+            'visible' => !Yii::$app->user->isGuest] ,
 
 
         Yii::$app->user->isGuest ? (

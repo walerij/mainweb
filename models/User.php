@@ -47,4 +47,20 @@ class User extends \yii\db\ActiveRecord
             'access_token' => 'Access Token',
         ];
     }
+    
+    
+    /*
+        подключение таблиц
+     *      */
+     public function getEarnings()
+    {
+        return $this->hasOne(EarningsRecord::className(),['user_id'=>'id']);
+    }
+
+    
+    public function getPayment()
+    {
+        return $this->hasMany(PaymentRecord::className(),['user_id'=>'id']);
+    }
+    
 }
