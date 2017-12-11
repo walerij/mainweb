@@ -62,4 +62,10 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(PaymentRecord::className(),['user_id'=>'id']);
     }
     
+    
+     public static function findUserByEmail($email)
+    {
+        return  static::findOne(['username'=>$email]);
+    }
+    
 }
