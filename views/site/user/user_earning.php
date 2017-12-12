@@ -13,21 +13,76 @@ $this->params['breadcrumbs'][] = $this->title;
                 <? foreach ($userEarning as $user_) {
                     ?>
                     <div class="input-group">
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>         
-                       <label class="form-control">Эл почта: <strong><?= $user_->username ?></strong><</label>
+                       <span class="input-group-addon" title="Эл почта"><i class="glyphicon glyphicon-user"></i></span>
+                       <label class="form-control"> <strong><?= $user_->username ?></strong></label>
                      </div>
-                    <h3>Эл почта: <strong><?= $user_->username ?></strong></h3>
-                    <h3>Платежная система: <strong><?= $user_->cache->cache_paysystem ?></strong></h3>
-                    <h3>Счет №: <strong><?= $user_->cache->cache_number?></strong></h3>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-magnet"></i></span>
+                        <label class="form-control">Платежная система: <strong><?= $user_->cache->cache_paysystem ?></strong></label>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-magnet"></i>
+
+                        </span>
+                        <label class="form-control"> <strong>   Счет:<?= $user_->cache->cache_paysystem ?></strong></label>
+                    </div>
+
                     <hr>
 
-                    
-                    <h5>Собрано XMR на coinhive: <strong><?= $user_->earnings->coinhive_hash ?></strong></h5>
-                    <h5>Собрано XMR на support: <strong><?= $user_->earnings->support_hash ?></strong></h5>
-                    <h5>Собрано всего: <strong><?= $user_->earnings->total_hash ?></strong></h5>
-                    <h5>Монетизировано всего: <strong><?= $user_->earnings->refferal_hash ?></strong></h5>
-                    <h5>Выплачено: <strong><?= $user_->earnings->delta_hash ?></strong></h5>
-
+                    <div class="bg bg-success">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <label class="form-control">Собрано XMR на coinhive:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->coinhive_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                            <div class="input-group">
+                                <label class="form-control">Собрано XMR на support:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->support_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                            <div class="input-group">
+                                <label class="form-control">Собрано всего:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->total_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <label class="form-control"> Монетизировано всего:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->total_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                            <div class="input-group">
+                                <label class="form-control">Выплачено:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->refferal_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                            <div class="input-group">
+                                <label class="form-control">Скорость:</label>
+                                <span class="input-group-addon">
+                                    <strong>
+                                        <?= $user_->earnings->delta_hash ?>
+                                    </strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
 
 
