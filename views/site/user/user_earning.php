@@ -12,11 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <? foreach ($userEarning as $user_) {
                     ?>
+                    <div class="input-group">
+                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>         
+                       <label class="form-control">Эл почта: <strong><?= $user_->username ?></strong><</label>
+                     </div>
                     <h3>Эл почта: <strong><?= $user_->username ?></strong></h3>
                     <h3>Платежная система: <strong><?= $user_->cache->cache_paysystem ?></strong></h3>
                     <h3>Счет №: <strong><?= $user_->cache->cache_number?></strong></h3>
                     <hr>
 
+                    
                     <h5>Собрано XMR на coinhive: <strong><?= $user_->earnings->coinhive_hash ?></strong></h5>
                     <h5>Собрано XMR на support: <strong><?= $user_->earnings->support_hash ?></strong></h5>
                     <h5>Собрано всего: <strong><?= $user_->earnings->total_hash ?></strong></h5>
