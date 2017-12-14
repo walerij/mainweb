@@ -13,6 +13,8 @@ use app\models\UserJoinForm;
 use app\models\User;
 use app\models\EarningsRecord;
 use app\models\CacheRecord;
+use app\models\PaymentForm;
+use app\models\PaymentRecord;
 
 class SiteController extends Controller {
 
@@ -167,6 +169,42 @@ class SiteController extends Controller {
           ['userEarning'=>$userEarning]
 
         );
+    }
+
+
+    public function actionPaymenthistory()
+    {
+
+        $session = Yii::$app->session;
+        $userEarning =  User::find()
+            ->where(['id'=>$session['__id']])->all();
+        return $this->render('payment\paymenthistory', ['AddUser' => $userEarning]);
+
+    }
+
+    public function actionAddpayment()
+    {
+        if (Yii::$app->request->isPost)
+            return $this->addPaymentPost();
+        $_id =  Yii::$app->request->get('id');
+        $payment = new PaymentForm();
+        $payment->user_id = $_id;
+        $payment->date_pay = date('Y-m-d H:i:s');
+        return $this->render('payment\addpayment',
+            ['payment' => $payment]
+        );
+    }
+
+    public function addPaymentPost() {
+        $paymentAdd = new PaymentForm();
+        if ($paymentAdd->load(Yii::$app->request->post()))
+            if ($paymentAdd->validate()) {
+                $paymentRecord = new PaymentRecord();//идет добавление пользователя
+                // $userRecord->setUserAddForm($userAdd);
+                $paymentRecord->setRecord($paymentAdd);
+                $paymentRecord->save();
+                return $this->redirect('/site/paymenthistory/');
+            }
     }
 
 }

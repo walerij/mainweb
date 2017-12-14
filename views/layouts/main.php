@@ -41,7 +41,7 @@ AppAsset::register($this);
             'visible' => !Yii::$app->user->isGuest
             
             ],
-        ['label' => 'Выплаты', 'url' => ['/site/about'],
+        ['label' => 'Выплаты', 'url' => ['/site/paymenthistory'],
             'visible' => !Yii::$app->user->isGuest] ,
 
         ['label' => 'Регистрация', 'url' => ['/site/join'],

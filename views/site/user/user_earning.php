@@ -17,14 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
                        <label class="form-control"> <strong><?= $user_->username ?></strong></label>
                      </div>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-magnet"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
                         <label class="form-control">Платежная система: <strong><?= $user_->cache->cache_paysystem ?></strong></label>
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-magnet"></i>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i>
 
                         </span>
-                        <label class="form-control"> <strong>   Счет:<?= $user_->cache->cache_paysystem ?></strong></label>
+                        <label class="form-control"> <strong>   Счет:<?= $user_->cache->cache_number ?></strong></label>
                     </div>
 
                     <hr>
